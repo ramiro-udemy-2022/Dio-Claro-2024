@@ -1,0 +1,44 @@
+@startuml Banc_Digital
+
+class Conta {
+    -String numero
+    -double saldo
+    -Cliente cliente
+    --
+    +Conta(String numero, Cliente cliente)
+    +String getNumero()
+    +double getSaldo()
+    +Cliente getCliente()
+    +void depositar(double valor)
+    +void sacar(double valor)
+    +void transferir(double valor, Conta contaDestino)
+}
+
+class ContaCorrente {
+}
+
+class ContaPoupanca {
+}
+
+class Cliente {
+    -String nome
+    --
+    +Cliente(String nome)
+    +String getNome()
+}
+
+class Banco {
+    -List<Conta> contas
+    --
+    +Banco()
+    +void adicionarConta(Conta conta)
+    +void listarClientes()
+    +Conta encontrarContaPorNumero(String numero)
+}
+
+Conta <|-- ContaCorrente
+Conta <|-- ContaPoupanca
+Conta *-- Cliente
+Banco *-- Conta
+
+@enduml
